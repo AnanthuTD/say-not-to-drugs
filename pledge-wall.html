@@ -3,40 +3,110 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Anti-Drug Pledge Wall - Say No to Drugs</title>
+		<title>Anti-Drug Pledge Wall</title>
+		<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+		<script>
+			tailwind.config = {
+				theme: {
+					extend: {
+						colors: { primary: "#4F46E5", secondary: "#EC4899" },
+						borderRadius: {
+							none: "0px",
+							sm: "4px",
+							DEFAULT: "8px",
+							md: "12px",
+							lg: "16px",
+							xl: "20px",
+							"2xl": "24px",
+							"3xl": "32px",
+							full: "9999px",
+							button: "8px",
+						},
+					},
+				},
+			};
+		</script>
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
-			href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Permanent+Marker&display=swap"
+			href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Permanent+Marker&display=swap"
 			rel="stylesheet"
 		/>
 		<link
 			rel="stylesheet"
 			href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
 		/>
+		<style>
+			:where([class^="ri-"])::before {
+				content: "\f3c2";
+			}
+			body {
+				min-height: 100vh;
+				font-family: "Indie Flower", cursive;
+				overflow: hidden;
+				background-color: #1a1a1a;
+				color: #e5e5e5;
+			}
+			main {
+				transform-origin: 0 0;
+				transition: transform 0.1s ease-out;
+			}
+			.wall-background {
+				background-image: url("https://readdy.ai/api/search-image?query=dark%2520textured%2520brick%2520wall%2520background%2520with%2520moody%2520lighting%252C%2520deep%2520shadows%252C%2520dramatic%2520noir%2520atmosphere%252C%2520subtle%2520ambient%2520lighting%252C%2520mysterious%2520and%2520elegant%2520urban%2520feel%252C%2520clean%2520wall%2520surface%252C%2520slightly%2520weathered%2520appearance&width=1920&height=1080&seq=wall123&orientation=landscape");
+				background-size: cover;
+				background-position: center;
+				background-attachment: fixed;
+				background-color: #1a1a1a;
+			}
+			.sticky-note {
+				transition: all 0.3s ease-in-out;
+				box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.15);
+				position: relative;
+				font-family: "Permanent Marker", cursive;
+			}
+			.sticky-note::before {
+				content: "";
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				background: rgba(255, 255, 255, 0.1);
+				pointer-events: none;
+			}
+			.sticky-note:hover {
+				transform: scale(1.02) translateY(-5px);
+				box-shadow: 3px 5px 12px rgba(0, 0, 0, 0.25);
+				z-index: 10;
+			}
+			.signature {
+				font-size: 0.85em;
+				text-align: right;
+				font-style: italic;
+				margin-top: 8px;
+			}
+			.date {
+				font-size: 0.7em;
+				opacity: 0.7;
+			}
+			input[type="number"]::-webkit-inner-spin-button,
+			input[type="number"]::-webkit-outer-spin-button {
+				-webkit-appearance: none;
+				margin: 0;
+			}
+		</style>
 	</head>
-	<body class="wall-background min-h-screen">
-		<!-- Progress Bar -->
-		<div class="progress-bar">
-			<div class="progress-bar-fill"></div>
-		</div>
-
-		<!-- Header -->
-		<header class="w-full p-4 bg-white bg-opacity-90 shadow-md">
+	<body class="wall-background">
+		<header class="w-full p-4 bg-gray-900 bg-opacity-90 shadow-md">
 			<div class="max-w-7xl mx-auto flex justify-between items-center">
-				<h1 class="text-3xl font-['Poppins'] font-bold text-primary">
-					Our Pledge Wall
-				</h1>
+				<h1 class="text-3xl font-['Pacifico'] text-primary">Our Pledge Wall</h1>
 				<div class="flex items-center space-x-4">
-					<a
-						href="index.html"
-						class="px-4 py-2 bg-gray-200 text-gray-700 rounded-button hover:bg-gray-300 ripple"
-						>Back to Home</a
-					>
 					<button
-						id="openPledgeModal"
-						class="px-4 py-2 bg-primary text-white hover:bg-opacity-90 transition-all rounded-button flex items-center ripple"
-						aria-label="Add your pledge"
+						class="px-4 py-2 bg-primary text-white hover:bg-opacity-90 transition-all !rounded-button whitespace-nowrap flex items-center"
 					>
 						<span class="w-5 h-5 flex items-center justify-center mr-2">
 							<i class="ri-add-line"></i>
@@ -46,120 +116,255 @@
 				</div>
 			</div>
 		</header>
-
-		<!-- Main Content -->
 		<main
-			class="max-w-7xl mx-auto p-4 md:p-8 min-h-[calc(100vh-80px)] zoomable"
+			class="max-w-7xl mx-auto p-4 md:p-8 min-h-[calc(100vh-80px)]"
 			style="transform-origin: 0 0"
 		>
 			<div
 				class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8"
-				id="pledgeGrid"
-				aria-live="polite"
-			></div>
+			>
+				<!-- Sticky Note 1 -->
+				<div
+					class="sticky-note bg-yellow-200 p-6 rounded-md transform rotate-[-2deg]"
+				>
+					<p class="text-gray-800">
+						I pledge to stay drug-free because my future is too bright to dim
+						with substances. My dreams deserve my full potential.
+					</p>
+					<div class="signature">
+						<p>Emily Johnson</p>
+						<p class="date">April 21, 2025</p>
+					</div>
+				</div>
+				<!-- Sticky Note 2 -->
+				<div
+					class="sticky-note bg-blue-200 p-6 rounded-md transform rotate-[1deg]"
+				>
+					<p class="text-gray-800">
+						I choose clarity over confusion, health over harm. My body is a
+						temple, not a testing ground for drugs.
+					</p>
+					<div class="signature">
+						<p>Marcus Williams</p>
+						<p class="date">April 18, 2025</p>
+					</div>
+				</div>
+				<!-- Sticky Note 3 -->
+				<div
+					class="sticky-note bg-green-200 p-6 rounded-md transform rotate-[3deg]"
+				>
+					<p class="text-gray-800">
+						For my family, for my future, for myself - I pledge to make choices
+						that keep me healthy, happy and drug-free.
+					</p>
+					<div class="signature">
+						<p>Sophia Rodriguez</p>
+						<p class="date">April 15, 2025</p>
+					</div>
+				</div>
+				<!-- Sticky Note 4 -->
+				<div
+					class="sticky-note bg-pink-200 p-6 rounded-md transform rotate-[-1deg]"
+				>
+					<p class="text-gray-800">
+						My mind is my greatest asset. I promise to protect it by saying no
+						to drugs and yes to a clear, focused future.
+					</p>
+					<div class="signature">
+						<p>James Chen</p>
+						<p class="date">April 22, 2025</p>
+					</div>
+				</div>
+				<!-- Sticky Note 5 -->
+				<div
+					class="sticky-note bg-purple-200 p-6 rounded-md transform rotate-[2deg]"
+				>
+					<p class="text-gray-800">
+						I pledge to find my highs in achievements, adventures, and authentic
+						connections - not in substances that harm me.
+					</p>
+					<div class="signature">
+						<p>Olivia Thompson</p>
+						<p class="date">April 19, 2025</p>
+					</div>
+				</div>
+				<!-- Sticky Note 6 -->
+				<div
+					class="sticky-note bg-yellow-100 p-6 rounded-md transform rotate-[-3deg]"
+				>
+					<p class="text-gray-800">
+						My story will be one of strength, not struggle with addiction. I
+						pledge to write my own ending by staying drug-free.
+					</p>
+					<div class="signature">
+						<p>Ethan Patel</p>
+						<p class="date">April 17, 2025</p>
+					</div>
+				</div>
+				<!-- Sticky Note 7 -->
+				<div
+					class="sticky-note bg-blue-100 p-6 rounded-md transform rotate-[4deg]"
+				>
+					<p class="text-gray-800">
+						I promise to respect my body, value my mind, and nurture my spirit
+						by choosing a path free from drugs and addiction.
+					</p>
+					<div class="signature">
+						<p>Isabella Martinez</p>
+						<p class="date">April 20, 2025</p>
+					</div>
+				</div>
+				<!-- Sticky Note 8 -->
+				<div
+					class="sticky-note bg-green-100 p-6 rounded-md transform rotate-[-4deg]"
+				>
+					<p class="text-gray-800">
+						For every challenge I face, I pledge to find healthy coping
+						mechanisms instead of turning to drugs. My resilience is my
+						strength.
+					</p>
+					<div class="signature">
+						<p>Noah Wilson</p>
+						<p class="date">April 16, 2025</p>
+					</div>
+				</div>
+				<!-- Sticky Note 9 -->
+				<div
+					class="sticky-note bg-red-100 p-6 rounded-md transform rotate-[1.5deg]"
+				>
+					<p class="text-gray-800">
+						I pledge to be the example for others who struggle, showing that a
+						life without drugs is a life full of possibilities.
+					</p>
+					<div class="signature">
+						<p>Ava Jackson</p>
+						<p class="date">April 14, 2025</p>
+					</div>
+				</div>
+				<!-- Sticky Note 10 -->
+				<div
+					class="sticky-note bg-orange-200 p-6 rounded-md transform rotate-[-1.5deg]"
+				>
+					<p class="text-gray-800">
+						My pledge: to live each day with clarity and purpose, making choices
+						that lead to health, not harm. No drugs, no exceptions.
+					</p>
+					<div class="signature">
+						<p>Liam Davis</p>
+						<p class="date">April 23, 2025</p>
+					</div>
+				</div>
+				<!-- Sticky Note 11 -->
+				<div
+					class="sticky-note bg-teal-200 p-6 rounded-md transform rotate-[2.5deg]"
+				>
+					<p class="text-gray-800">
+						I promise to fill my life with real experiences, not artificial
+						highs. My future deserves my best self, drug-free and determined.
+					</p>
+					<div class="signature">
+						<p>Charlotte Kim</p>
+						<p class="date">April 12, 2025</p>
+					</div>
+				</div>
+				<!-- Sticky Note 12 -->
+				<div
+					class="sticky-note bg-pink-100 p-6 rounded-md transform rotate-[-2.5deg]"
+				>
+					<p class="text-gray-800">
+						Today I pledge: my dreams are worth more than any momentary escape
+						drugs might offer. I choose reality, however challenging.
+					</p>
+					<div class="signature">
+						<p>Benjamin Taylor</p>
+						<p class="date">April 13, 2025</p>
+					</div>
+				</div>
+			</div>
 		</main>
-
-		<!-- Pledge Modal -->
+		<!-- Add Pledge Modal (Hidden by default) -->
 		<div
 			id="pledgeModal"
 			class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden"
-			aria-hidden="true"
 		>
-			<div
-				class="bg-white rounded-lg p-6 w-full max-w-md"
-				role="dialog"
-				aria-labelledby="pledgeModalTitle"
-			>
+			<div class="bg-gray-800 rounded-lg p-6 w-full max-w-md">
 				<div class="flex justify-between items-center mb-4">
-					<h2 id="pledgeModalTitle" class="text-xl font-bold">
-						Add Your Pledge
-					</h2>
+					<h2 class="text-xl font-bold text-white">Add Your Pledge</h2>
 					<button
 						id="closeModal"
-						class="text-gray-500 hover:text-gray-700"
-						aria-label="Close modal"
+						class="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-gray-700"
 					>
 						<i class="ri-close-line ri-lg"></i>
 					</button>
 				</div>
 				<form id="pledgeForm" class="space-y-4">
 					<div>
-						<label for="name" class="block mb-1 font-medium">Your Name</label>
-						<input
-							type="text"
-							id="name"
-							maxlength="50"
-							class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-primary"
-							required
-							aria-describedby="nameHelp"
-						/>
-						<p id="nameHelp" class="text-sm text-gray-500">
-							Enter your full name or pseudonym.
-						</p>
-					</div>
-					<div>
-						<label for="pledgeText" class="block mb-1 font-medium"
+						<label for="pledgeText" class="block mb-1 font-medium text-gray-200"
 							>Your Pledge</label
 						>
 						<textarea
 							id="pledgeText"
-							maxlength="100"
 							rows="4"
-							class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-primary"
-							required
-							aria-describedby="pledgeTextHelp"
+							class="w-full border border-gray-600 rounded p-2 focus:outline-none focus:ring-2 focus:ring-primary bg-gray-700 text-white placeholder-gray-400"
+							placeholder="Write your anti-drug pledge here..."
 						></textarea>
-						<p id="pledgeTextHelp" class="text-sm text-gray-500">
-							<span id="charCount">0</span>/100 characters
-						</p>
 					</div>
-					<div class="flex justify-between">
-						<div>
-							<label class="block mb-1 font-medium">Note Color</label>
+					<div>
+						<label for="name" class="block mb-1 font-medium text-gray-200"
+							>Your Name</label
+						>
+						<input
+							type="text"
+							id="name"
+							class="w-full border border-gray-600 rounded p-2 focus:outline-none focus:ring-2 focus:ring-primary bg-gray-700 text-white placeholder-gray-400"
+							placeholder="Enter your name"
+						/>
+					</div>
+					<div class="flex justify-between space-x-4">
+						<div class="w-1/2">
+							<label class="block mb-1 font-medium text-gray-200"
+								>Note Color</label
+							>
 							<div class="flex space-x-2">
 								<button
 									type="button"
-									class="w-8 h-8 bg-yellow-200 rounded-full border-2 border-gray-600 color-option"
+									class="w-8 h-8 bg-yellow-200 rounded-full border-2 border-transparent hover:border-gray-400 focus:border-gray-600 color-option"
 									data-color="bg-yellow-200"
-									aria-label="Yellow note"
 								></button>
 								<button
 									type="button"
-									class="w-8 h-8 bg-blue-200 rounded-full border-2 border-transparent hover:border-gray-400 color-option"
+									class="w-8 h-8 bg-blue-200 rounded-full border-2 border-transparent hover:border-gray-400 focus:border-gray-600 color-option"
 									data-color="bg-blue-200"
-									aria-label="Blue note"
 								></button>
 								<button
 									type="button"
-									class="w-8 h-8 bg-green-200 rounded-full border-2 border-transparent hover:border-gray-400 color-option"
+									class="w-8 h-8 bg-green-200 rounded-full border-2 border-transparent hover:border-gray-400 focus:border-gray-600 color-option"
 									data-color="bg-green-200"
-									aria-label="Green note"
 								></button>
 								<button
 									type="button"
-									class="w-8 h-8 bg-pink-200 rounded-full border-2 border-transparent hover:border-gray-400 color-option"
+									class="w-8 h-8 bg-pink-200 rounded-full border-2 border-transparent hover:border-gray-400 focus:border-gray-600 color-option"
 									data-color="bg-pink-200"
-									aria-label="Pink note"
 								></button>
 							</div>
 						</div>
-						<div>
-							<label class="block mb-1 font-medium">Rotation</label>
+						<div class="w-1/2">
+							<label class="block mb-1 font-medium text-gray-200"
+								>Rotation</label
+							>
 							<div class="flex items-center space-x-2">
 								<button
 									type="button"
-									class="w-8 h-8 border rounded hover:bg-gray-100 rotation-btn"
+									class="w-8 h-8 flex items-center justify-center border border-gray-600 rounded hover:bg-gray-700 text-white rotation-btn"
 									data-rotation="-1"
-									aria-label="Rotate left"
 								>
 									<i class="ri-anticlockwise-line"></i>
 								</button>
-								<span id="rotationValue">0°</span>
+								<span id="rotationValue" class="text-white">0°</span>
 								<button
 									type="button"
-									class="w-8 h-8 border rounded hover:bg-gray-100 rotation-btn"
+									class="w-8 h-8 flex items-center justify-center border border-gray-600 rounded hover:bg-gray-700 text-white rotation-btn"
 									data-rotation="1"
-									aria-label="Rotate right"
 								>
 									<i class="ri-clockwise-line"></i>
 								</button>
@@ -168,14 +373,147 @@
 					</div>
 					<button
 						type="submit"
-						class="w-full py-2 bg-primary text-white rounded-button hover:bg-opacity-90 ripple"
+						class="w-full py-2 bg-primary text-white !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-all"
 					>
-						Post Pledge
+						Post Your Pledge
 					</button>
 				</form>
 			</div>
 		</div>
-
-		<script type="module" src="/src/pledge-wall.js"></script>
+		<script>
+			document.addEventListener("DOMContentLoaded", function () {
+				// Show pledge modal on page load
+				setTimeout(() => {
+					pledgeModal.classList.remove("hidden");
+				}, 500);
+				const mainContent = document.querySelector("main");
+				let scale = 1;
+				const ZOOM_SPEED = 0.1;
+				const MIN_SCALE = 0.5;
+				const MAX_SCALE = 2;
+				document.addEventListener(
+					"wheel",
+					function (e) {
+						if (e.ctrlKey) {
+							e.preventDefault();
+							const rect = mainContent.getBoundingClientRect();
+							const mouseX = e.clientX - rect.left;
+							const mouseY = e.clientY - rect.top;
+							const zoomDelta = -Math.sign(e.deltaY) * ZOOM_SPEED;
+							const newScale = Math.min(
+								Math.max(scale + zoomDelta, MIN_SCALE),
+								MAX_SCALE
+							);
+							if (newScale !== scale) {
+								const scaleRatio = newScale / scale;
+								const boundingRect = mainContent.getBoundingClientRect();
+								const pinX = mouseX / boundingRect.width;
+								const pinY = mouseY / boundingRect.height;
+								const translateX = mouseX - mouseX * scaleRatio;
+								const translateY = mouseY - mouseY * scaleRatio;
+								mainContent.style.transform = `scale(${newScale}) translate(${translateX}px, ${translateY}px)`;
+								scale = newScale;
+							}
+						}
+					},
+					{ passive: false }
+				);
+				// Reset zoom on double click
+				mainContent.addEventListener("dblclick", function () {
+					scale = 1;
+					mainContent.style.transform = `scale(${scale})`;
+				});
+				const addPledgeBtn = document.querySelector("header button");
+				const pledgeModal = document.getElementById("pledgeModal");
+				const closeModal = document.getElementById("closeModal");
+				const pledgeForm = document.getElementById("pledgeForm");
+				const rotationBtns = document.querySelectorAll(".rotation-btn");
+				const rotationValue = document.getElementById("rotationValue");
+				const colorOptions = document.querySelectorAll(".color-option");
+				let currentRotation = 0;
+				let selectedColor = "bg-yellow-200";
+				// Open modal
+				addPledgeBtn.addEventListener("click", function () {
+					pledgeModal.classList.remove("hidden");
+				});
+				// Close modal
+				closeModal.addEventListener("click", function () {
+					pledgeModal.classList.add("hidden");
+				});
+				// Close modal when clicking outside
+				pledgeModal.addEventListener("click", function (e) {
+					if (e.target === pledgeModal) {
+						pledgeModal.classList.add("hidden");
+					}
+				});
+				// Handle rotation buttons
+				rotationBtns.forEach((btn) => {
+					btn.addEventListener("click", function () {
+						const rotationChange = parseInt(this.dataset.rotation);
+						currentRotation += rotationChange;
+						if (currentRotation > 5) currentRotation = 5;
+						if (currentRotation < -5) currentRotation = -5;
+						rotationValue.textContent = `${currentRotation}°`;
+					});
+				});
+				// Handle color selection
+				colorOptions.forEach((option) => {
+					option.addEventListener("click", function () {
+						// Remove border from all options
+						colorOptions.forEach((opt) =>
+							opt.classList.replace("border-gray-600", "border-transparent")
+						);
+						// Add border to selected option
+						this.classList.replace("border-transparent", "border-gray-600");
+						selectedColor = this.dataset.color;
+					});
+				});
+				// Set default selected color
+				colorOptions[0].classList.replace(
+					"border-transparent",
+					"border-gray-600"
+				);
+				// Handle form submission
+				pledgeForm.addEventListener("submit", function (e) {
+					e.preventDefault();
+					const pledgeText = document.getElementById("pledgeText").value.trim();
+					const name = document.getElementById("name").value.trim();
+					if (!pledgeText || !name) {
+						alert("Please fill out all fields");
+						return;
+					}
+					// Create new sticky note
+					const currentDate = new Date();
+					const formattedDate = `${currentDate.toLocaleString("default", {
+						month: "long",
+					})} ${currentDate.getDate()}, ${currentDate.getFullYear()}`;
+					const newNote = document.createElement("div");
+					newNote.className = `sticky-note ${selectedColor} p-6 rounded-md transform rotate-[${currentRotation}deg]`;
+					newNote.innerHTML = `
+<p class="text-gray-800">${pledgeText}</p>
+<div class="signature">
+<p>${name}</p>
+<p class="date">${formattedDate}</p>
+</div>
+`;
+					// Add to grid
+					const grid = document.querySelector("main > div");
+					grid.prepend(newNote);
+					// Reset form and close modal
+					pledgeForm.reset();
+					currentRotation = 0;
+					rotationValue.textContent = "0°";
+					colorOptions.forEach((opt) =>
+						opt.classList.replace("border-gray-600", "border-transparent")
+					);
+					colorOptions[0].classList.replace(
+						"border-transparent",
+						"border-gray-600"
+					);
+					selectedColor = "bg-yellow-200";
+					pledgeModal.classList.add("hidden");
+				});
+			});
+		</script>
 	</body>
 </html>
