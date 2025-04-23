@@ -14,6 +14,109 @@
 			rel="stylesheet"
 			href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
 		/>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+			rel="stylesheet"
+		/>
+		<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
+
+		<style>
+			:where([class^="ri-"])::before {
+				content: "\f3c2";
+			}
+			body {
+				font-family: "Montserrat", sans-serif;
+			}
+			.image-broken,
+			.image-happy {
+				transition: opacity 0.1s ease;
+			}
+			input[type="range"] {
+				-webkit-appearance: none;
+				appearance: none;
+				background: transparent;
+			}
+			input[type="range"]::-webkit-slider-runnable-track {
+				background: linear-gradient(to bottom, #dc143c, #4a154b);
+				width: 8px;
+				border-radius: 4px;
+			}
+			input[type="range"]::-webkit-slider-thumb {
+				-webkit-appearance: none;
+				appearance: none;
+				width: 24px;
+				height: 24px;
+				background: white;
+				border: 2px solid #4a154b;
+				border-radius: 50%;
+				margin-left: -8px;
+				cursor: pointer;
+				box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+			}
+			input[type="range"][orient="vertical"] {
+				writing-mode: bt-lr;
+				-webkit-appearance: slider-vertical;
+			}
+			input[type="range"]:focus {
+				outline: none;
+			}
+			.pulse-animation {
+				animation: pulse 2s infinite;
+			}
+			@keyframes pulse {
+				0% {
+					box-shadow: 0 0 0 0 rgba(220, 20, 60, 0.7);
+				}
+				70% {
+					box-shadow: 0 0 0 15px rgba(220, 20, 60, 0);
+				}
+				100% {
+					box-shadow: 0 0 0 0 rgba(220, 20, 60, 0);
+				}
+			}
+			.hero-gradient {
+				background: linear-gradient(135deg, #4a154b 0%, #dc143c 100%);
+			}
+			.stat-card {
+				transition: transform 0.3s ease, box-shadow 0.3s ease;
+			}
+			.stat-card:hover {
+				transform: translateY(-5px);
+				box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+			}
+			.cta-button {
+				transition: transform 0.3s ease, box-shadow 0.3s ease;
+			}
+			.cta-button:hover {
+				transform: translateY(-2px);
+				box-shadow: 0 5px 15px rgba(220, 20, 60, 0.3);
+			}
+			input[type="number"]::-webkit-inner-spin-button,
+			input[type="number"]::-webkit-outer-spin-button {
+				-webkit-appearance: none;
+				margin: 0;
+			}
+			.counter {
+				transition: opacity 0.5s ease, transform 0.5s ease;
+				opacity: 0;
+				transform: translateY(20px);
+			}
+			.counter.visible {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		</style>
 	</head>
 	<body class="bg-white">
 		<!-- Hero Section -->
@@ -347,6 +450,40 @@
 			</div>
 		</section>
 
+		<section class="py-16 md:py-24 bg-gray-50">
+			<div class="container mx-auto px-6">
+				<div class="text-center mb-16">
+					<h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
+						The Impact on Families
+					</h2>
+					<p class="text-lg text-gray-600 max-w-3xl mx-auto">
+						See how substance abuse can affect family dynamics. Scroll to see
+						the difference.
+					</p>
+				</div>
+				<div class="max-w-6xl mx-auto relative">
+					<div class="relative h-[600px] w-full rounded-lg overflow-hidden">
+						<div
+							class="absolute inset-0 image-broken"
+							style="
+								background-image: url('https://readdy.ai/api/search-image?query=sad%20lonely%20person%20sitting%20alone%20in%20dark%20room%2C%20empty%20chairs%20around%2C%20showing%20isolation%20and%20family%20breakdown%2C%20emotional%20photography%2C%20dramatic%20lighting%2C%20desaturated%20colors&width=1200&height=600&seq=6&orientation=landscape');
+								background-position: center;
+								background-size: cover;
+							"
+						></div>
+						<div
+							class="absolute inset-0 image-happy"
+							style="
+								background-image: url('https://readdy.ai/api/search-image?query=happy%20diverse%20family%20enjoying%20quality%20time%20together%2C%20parents%20and%20children%20laughing%20and%20playing%20in%20bright%20living%20room%2C%20warm%20lighting%2C%20vibrant%20colors%2C%20joyful%20atmosphere&width=1200&height=600&seq=7&orientation=landscape');
+								background-position: center;
+								background-size: cover;
+							"
+						></div>
+					</div>
+				</div>
+			</div>
+		</section>
+
 		<!-- Footer -->
 		<footer class="bg-gray-100 py-12 px-4">
 			<div class="max-w-6xl mx-auto">
@@ -389,5 +526,74 @@
 		</footer>
 
 		<script type="module" src="/src/main.js"></script>
+		<script>
+			document.addEventListener("DOMContentLoaded", function () {
+				// Family Image Scroll Control
+				// Family Image Scroll Control
+				const imageHappy = document.querySelector(".image-happy");
+				const imageBroken = document.querySelector(".image-broken");
+				const familySection =
+					document.querySelector(".image-happy").parentElement;
+				let isAnimationActive = false;
+				let animationCompleted = false;
+
+				// Function to lock scrolling
+				function lockScroll() {
+					window.scrollTo(window.scrollX, window.scrollY);
+				}
+
+				// Function to update image opacity and control scrolling
+				function updateImageOpacity() {
+					const rect = familySection.getBoundingClientRect();
+					const windowHeight = window.innerHeight;
+					const sectionTop = rect.top;
+					const sectionHeight = rect.height;
+
+					// Calculate scroll percentage
+					const scrollPercentage = Math.max(
+						0,
+						Math.min(1, 1 - sectionTop / (windowHeight - sectionHeight / 2))
+					);
+
+					// Update image opacities
+					imageHappy.style.opacity = scrollPercentage;
+					imageBroken.style.opacity = 1 - scrollPercentage;
+
+					// Check if section is in view
+					if (sectionTop <= windowHeight && sectionTop + sectionHeight >= 0) {
+						if (!animationCompleted) {
+							isAnimationActive = true;
+							// Lock scrolling by adding event listener
+							window.addEventListener("scroll", lockScroll);
+						}
+					} else {
+						isAnimationActive = false;
+						window.removeEventListener("scroll", lockScroll);
+					}
+
+					// Check if animation is complete (happy image fully visible)
+					if (scrollPercentage >= 1 && isAnimationActive) {
+						isAnimationActive = false;
+						animationCompleted = true;
+						window.removeEventListener("scroll", lockScroll);
+					}
+				}
+
+				// Add scroll and resize event listeners
+				window.addEventListener("scroll", updateImageOpacity);
+				window.addEventListener("resize", updateImageOpacity);
+
+				// Initial call
+				updateImageOpacity();
+
+				// Reset animationCompleted when section is out of view (optional, for reusability)
+				window.addEventListener("scroll", () => {
+					const rect = familySection.getBoundingClientRect();
+					if (rect.top > window.innerHeight || rect.bottom < 0) {
+						animationCompleted = false;
+					}
+				});
+			});
+		</script>
 	</body>
 </html>

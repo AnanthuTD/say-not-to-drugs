@@ -125,3 +125,26 @@
     display: none;
   }
 }
+
+.image-broken,
+.image-happy {
+  transition: opacity 0.1s ease;
+}
+
+/* Sticky container styling */
+#family-sticky-container {
+  will-change: transform;
+}
+
+/* Disable transitions for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .image-broken,
+  .image-happy {
+    transition: none;
+  }
+}
+
+/* Ensure body doesn't scroll when animation is active */
+.body-no-scroll {
+  overflow: hidden;
+}
