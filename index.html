@@ -4,7 +4,26 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Say No to Drugs - Choose Life</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+			rel="stylesheet"
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap"
+			rel="stylesheet"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+		/>
 		<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
 		<script>
 			tailwind.config = {
 				theme: {
@@ -29,26 +48,31 @@
 							full: "9999px",
 							button: "8px",
 						},
+						animation: {
+							'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+						},
+						keyframes: {
+							pulse: {
+								'0%, 100%': {
+									opacity: 1,
+									boxShadow: '0 0 0 0 rgba(220, 38, 38, 0.7)',
+								},
+								'50%': {
+									opacity: 0.8,
+									boxShadow: '0 0 0 10px rgba(220, 38, 38, 0)',
+								},
+							},
+						},
 					},
 				},
 			};
 		</script>
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link
-			href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
-			rel="stylesheet"
-		/>
-		<link
-			rel="stylesheet"
-			href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
-		/>
 		<style>
 			:where([class^="ri-"])::before {
 				content: "\f3c2";
 			}
 			body {
-				font-family: "Poppins", sans-serif;
+				font-family: "Montserrat", sans-serif;
 				background-color: #111827;
 				color: #e5e7eb;
 			}
@@ -84,39 +108,63 @@
 				background: #dc2626;
 				border-radius: 8px;
 			}
-			.pledge-card {
-				transition: transform 0.3s ease;
-			}
-			.pledge-card:hover {
-				transform: scale(1.03);
-			}
 			.stat-card {
-				transition: transform 0.3s ease;
+				transition: transform 0.3s ease, box-shadow 0.3s ease;
+				background: linear-gradient(145deg, #1E293B, #2D3748);
 			}
 			.stat-card:hover {
-				transform: scale(1.05);
+				transform: translateY(-5px);
+				box-shadow: 0 10px 25px rgba(220, 38, 38, 0.2);
 			}
 			.timeline-item {
 				scroll-snap-align: start;
+				transition: transform 0.3s ease, box-shadow 0.3s ease;
+				background: linear-gradient(145deg, #1E293B, #2D3748);
 			}
-			input,
-			textarea {
+			.timeline-item:hover {
+				transform: translateY(-3px);
+				box-shadow: 0 5px 15px rgba(220, 38, 38, 0.3);
+			}
+			.story-card {
+				transition: transform 0.3s ease, box-shadow 0.3s ease;
+				background: linear-gradient(145deg, #1E293B, #2D3748);
+			}
+			.story-card:hover {
+				transform: translateY(-5px);
+				box-shadow: 0 10px 25px rgba(220, 38, 38, 0.2);
+			}
+			input, textarea {
 				background-color: #1e293b;
 				color: #e5e7eb;
 				border-color: #374151;
 			}
-			input:focus,
-			textarea:focus {
+			input:focus, textarea:focus {
 				outline: none;
 				border-color: #dc2626;
 				box-shadow: 0 0 0 2px rgba(220, 38, 38, 0.5);
+			}
+			.image-broken, .image-happy {
+				transition: opacity 0.3s ease;
+			}
+			.hero-gradient {
+				background: linear-gradient(135deg, #4a154b 0%, #dc2626 100%);
+			}
+			.cta-button {
+				transition: transform 0.3s ease, box-shadow 0.3s ease;
+			}
+			.cta-button:hover {
+				transform: translateY(-2px);
+				box-shadow: 0 5px 15px rgba(220, 38, 38, 0.4);
+			}
+			.pacifico {
+				font-family: "Pacifico", cursive;
 			}
 		</style>
 	</head>
 	<body class="bg-darkbg text-darktext">
 		<!-- Hero Section -->
 		<section
-			class="relative w-full h-screen flex items-center justify-center overflow-hidden"
+			class="relative w-full h-screen flex items-center justify-center overflow-hidden hero-gradient"
 			style="
 				background-image: url('https://readdy.ai/api/search-image?query=A%20hopeful%20scene%20showing%20young%20people%20enjoying%20life%20in%20a%20park%2C%20with%20bright%20sunlight%20filtering%20through%20trees.%20The%20image%20has%20a%20clean%2C%20bright%20left%20side%20that%20gradually%20transitions%20to%20a%20more%20detailed%20scene%20on%20the%20right.%20Perfect%20for%20text%20overlay%20on%20the%20left%20side.%20High%20quality%2C%20professional%20photography%20style%2C%20inspirational%2C%20uplifting%20mood.&width=1920&height=1080&seq=1&orientation=landscape');
 				background-size: cover;
@@ -125,28 +173,29 @@
 		>
 			<div class="absolute inset-0 bg-black bg-opacity-70"></div>
 			<div class="relative z-10 text-center px-4 max-w-4xl animate-fade-in">
-				<h1 class="text-5xl md:text-7xl font-bold text-white mb-4">
+				<h1 class="text-5xl md:text-7xl font-bold text-white mb-4 pacifico">
 					Say No to Drugs
 				</h1>
-				<p class="text-xl md:text-2xl text-white mb-8 font-light">
+				<p class="text-xl md:text-2xl text-gray-200 mb-8 font-light">
 					Choose Life.
 				</p>
 				<a
 					href="/pledge-wall.html"
-					class="bg-primary text-white px-8 py-3 rounded-button font-medium text-lg hover:bg-opacity-90 transition-all whitespace-nowrap"
+					class="bg-primary text-white px-8 py-3 rounded-button font-medium text-lg hover:bg-opacity-90 transition-all cta-button animate-pulse-slow"
 					>Take the Pledge</a
 				>
 			</div>
 		</section>
+
 		<!-- Stats Section -->
 		<section class="py-20 px-4 bg-darkbg">
 			<div class="max-w-6xl mx-auto">
-				<h2 class="text-3xl md:text-4xl font-bold text-center mb-16 text-white">
+				<h2 class="text-3xl md:text-4xl font-bold text-center mb-16 text-white pacifico">
 					The Reality of Drug Abuse
 				</h2>
 				<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
 					<div
-						class="stat-card bg-darkcard p-8 rounded shadow-lg text-center animate-fade-in-delay-1 border border-darkborder"
+						class="stat-card p-8 rounded-lg text-center animate-fade-in-delay-1 border border-darkborder"
 					>
 						<p class="text-primary text-5xl font-bold mb-4">1.2M+</p>
 						<p class="text-gray-300">
@@ -154,7 +203,7 @@
 						</p>
 					</div>
 					<div
-						class="stat-card bg-darkcard p-8 rounded shadow-lg text-center animate-fade-in-delay-1 border border-darkborder"
+						class="stat-card p-8 rounded-lg text-center animate-fade-in-delay-1 border border-darkborder"
 					>
 						<p class="text-primary text-5xl font-bold mb-4">73%</p>
 						<p class="text-gray-300">
@@ -162,7 +211,7 @@
 						</p>
 					</div>
 					<div
-						class="stat-card bg-darkcard p-8 rounded shadow-lg text-center animate-fade-in-delay-1 border border-darkborder"
+						class="stat-card p-8 rounded-lg text-center animate-fade-in-delay-1 border border-darkborder"
 					>
 						<p class="text-primary text-5xl font-bold mb-4">$740B</p>
 						<p class="text-gray-300">
@@ -173,17 +222,18 @@
 				</div>
 			</div>
 		</section>
+
 		<!-- Timeline Section -->
 		<section class="py-20 px-4 bg-gray-900">
 			<div class="max-w-6xl mx-auto">
-				<h2 class="text-3xl md:text-4xl font-bold text-center mb-16 text-white">
+				<h2 class="text-3xl md:text-4xl font-bold text-center mb-16 text-white pacifico">
 					The Path of Addiction
 				</h2>
 				<div class="timeline-container overflow-x-auto pb-4">
 					<div class="flex space-x-6 min-w-max">
 						<div
 							id="timeline-1month"
-							class="timeline-item bg-darkcard p-6 rounded w-[250px] flex-shrink-0 border-2 border-transparent hover:border-primary transition-all cursor-pointer"
+							class="timeline-item p-6 rounded-lg w-[250px] flex-shrink-0 border-2 border-transparent hover:border-primary cursor-pointer"
 						>
 							<h3 class="text-white font-bold text-xl mb-2">1 Month</h3>
 							<p class="text-gray-400">
@@ -193,7 +243,7 @@
 						</div>
 						<div
 							id="timeline-3months"
-							class="timeline-item bg-darkcard p-6 rounded w-[250px] flex-shrink-0 border-2 border-transparent hover:border-primary transition-all cursor-pointer"
+							class="timeline-item p-6 rounded-lg w-[250px] flex-shrink-0 border-2 border-transparent hover:border-primary cursor-pointer"
 						>
 							<h3 class="text-white font-bold text-xl mb-2">3 Months</h3>
 							<p class="text-gray-400">
@@ -203,7 +253,7 @@
 						</div>
 						<div
 							id="timeline-6months"
-							class="timeline-item bg-darkcard p-6 rounded w-[250px] flex-shrink-0 border-2 border-transparent hover:border-primary transition-all cursor-pointer"
+							class="timeline-item p-6 rounded-lg w-[250px] flex-shrink-0 border-2 border-transparent hover:border-primary cursor-pointer"
 						>
 							<h3 class="text-white font-bold text-xl mb-2">6 Months</h3>
 							<p class="text-gray-400">
@@ -213,7 +263,7 @@
 						</div>
 						<div
 							id="timeline-1year"
-							class="timeline-item bg-darkcard p-6 rounded w-[250px] flex-shrink-0 border-2 border-transparent hover:border-primary transition-all cursor-pointer"
+							class="timeline-item p-6 rounded-lg w-[250px] flex-shrink-0 border-2 border-transparent hover:border-primary cursor-pointer"
 						>
 							<h3 class="text-white font-bold text-xl mb-2">1 Year</h3>
 							<p class="text-gray-400">
@@ -223,7 +273,7 @@
 						</div>
 						<div
 							id="timeline-2years"
-							class="timeline-item bg-darkcard p-6 rounded w-[250px] flex-shrink-0 border-2 border-transparent hover:border-primary transition-all cursor-pointer"
+							class="timeline-item p-6 rounded-lg w-[250px] flex-shrink-0 border-2 border-transparent hover:border-primary cursor-pointer"
 						>
 							<h3 class="text-white font-bold text-xl mb-2">2+ Years</h3>
 							<p class="text-gray-400">
@@ -237,7 +287,7 @@
 			<!-- Timeline Details Modal -->
 			<div
 				id="timelineModal"
-				class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50"
+				class="fixed inset-0 bg-black bg-opacity-70 hidden items-center justify-center z-50"
 			>
 				<div
 					class="bg-darkcard rounded-lg p-8 max-w-2xl w-full mx-4 relative border border-darkborder"
@@ -253,7 +303,7 @@
 						class="text-2xl font-bold mb-4 text-white"
 					></h3>
 					<div id="timelineModalContent" class="space-y-4 text-gray-300"></div>
-					<div class="mt-6 pt-4 border-t border-gray-700">
+					<div class="mt-6 pt-4 border-t border-darkborder">
 						<h4 class="font-bold text-primary mb-2">Warning Signs:</h4>
 						<ul
 							id="timelineModalSigns"
@@ -263,7 +313,7 @@
 					<div class="mt-6">
 						<button
 							onclick="closeTimelineModal()"
-							class="bg-primary text-white px-6 py-2 rounded-button hover:bg-opacity-90 transition-all"
+							class="bg-primary text-white px-6 py-2 rounded-button hover:bg-opacity-90 transition-all cta-button"
 						>
 							Close
 						</button>
@@ -271,15 +321,16 @@
 				</div>
 			</div>
 		</section>
+
 		<!-- Stories Section -->
 		<section class="py-20 px-4 bg-darkbg">
 			<div class="max-w-6xl mx-auto">
-				<h2 class="text-3xl md:text-4xl font-bold text-center mb-16 text-white">
+				<h2 class="text-3xl md:text-4xl font-bold text-center mb-16 text-white pacifico">
 					Recovery Stories
 				</h2>
 				<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 					<div
-						class="bg-darkcard p-8 rounded shadow-lg border border-darkborder"
+						class="story-card p-8 rounded-lg border border-darkborder"
 					>
 						<h3 class="text-2xl font-bold mb-4 text-white">
 							Emily: 5 Years Sober
@@ -296,7 +347,7 @@
 						>
 					</div>
 					<div
-						class="bg-darkcard p-8 rounded shadow-lg border border-darkborder"
+						class="story-card p-8 rounded-lg border border-darkborder"
 					>
 						<h3 class="text-2xl font-bold mb-4 text-white">
 							Michael: Rebuilt His Family
@@ -315,77 +366,51 @@
 				</div>
 			</div>
 		</section>
-		<!-- Pledge Wall Section -->
-		<section id="pledge" class="py-20 px-4 bg-gray-900">
-			<div class="max-w-6xl mx-auto">
-				<h2 class="text-3xl md:text-4xl font-bold text-center mb-6 text-white">
-					Take the Pledge
-				</h2>
-				<p class="text-center text-gray-300 mb-12 max-w-2xl mx-auto">
-					Join thousands of others in committing to a drug-free life. Your
-					pledge will inspire others to make the same choice.
-				</p>
-				<div
-					class="bg-darkcard p-8 rounded shadow-lg mb-12 max-w-xl mx-auto border border-darkborder"
-				>
-					<form id="pledgeForm" class="space-y-6">
-						<div>
-							<label for="initials" class="block text-gray-300 font-medium mb-2"
-								>Your Initials</label
-							>
-							<input
-								type="text"
-								id="initials"
-								maxlength="5"
-								class="w-full px-4 py-2 border border-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-primary"
-								required
-							/>
-						</div>
-						<div>
-							<label for="reason" class="block text-gray-300 font-medium mb-2"
-								>Why Are You Taking This Pledge?</label
-							>
-							<textarea
-								id="reason"
-								maxlength="100"
-								rows="3"
-								class="w-full px-4 py-2 border border-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-primary"
-								required
-							></textarea>
-							<p class="text-sm text-gray-500 mt-1">
-								<span id="charCount">0</span>/100 characters
-							</p>
-						</div>
-						<button
-							type="submit"
-							class="bg-primary text-white px-6 py-3 rounded-button font-medium hover:bg-opacity-90 transition-all whitespace-nowrap w-full"
-						>
-							Submit Your Pledge
-						</button>
-					</form>
-				</div>
-				<div class="text-center mb-12">
-					<p class="text-xl font-bold text-white">
-						<span id="pledgeCount">10,243</span>+ Pledges Taken
+
+		<!-- Impact on Families Section -->
+		<section class="py-16 md:py-24 bg-gray-900">
+			<div class="container mx-auto px-6">
+				<div class="text-center mb-16">
+					<h2 class="text-3xl md:text-4xl font-bold mb-4 text-white pacifico">
+						The Impact on Families
+					</h2>
+					<p class="text-lg text-gray-300 max-w-3xl mx-auto">
+						See how substance abuse can affect family dynamics. Scroll to see
+						the difference between isolation and connection.
 					</p>
 				</div>
-				<div
-					id="pledgeWall"
-					class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-				>
-					<!-- Default pledge cards will be populated here -->
+				<div class="max-w-6xl mx-auto relative">
+					<div class="relative h-[600px] w-full rounded-lg overflow-hidden border border-darkborder shadow-lg">
+						<div
+							class="absolute inset-0 image-broken"
+							style="
+								background-image: url('https://readdy.ai/api/search-image?query=sad%20lonely%20person%20sitting%20alone%20in%20dark%20room%2C%20empty%20chairs%20around%2C%20showing%20isolation%20and%20family%20breakdown%2C%20emotional%20photography%2C%20dramatic%20lighting%2C%20desaturated%20colors&width=1200&height=600&seq=6&orientation=landscape');
+								background-position: center;
+								background-size: cover;
+							"
+						></div>
+						<div
+							class="absolute inset-0 image-happy"
+							style="
+								background-image: url('https://readdy.ai/api/search-image?query=happy%20diverse%20family%20enjoying%20quality%20time%20together%2C%20parents%20and%20children%20laughing%20and%20playing%20in%20bright%20living%20room%2C%20warm%20lighting%2C%20vibrant%20colors%2C%20joyful%20atmosphere&width=1200&height=600&seq=7&orientation=landscape');
+								background-position: center;
+								background-size: cover;
+							"
+						></div>
+					</div>
 				</div>
 			</div>
 		</section>
+
 		<!-- Resources Section -->
 		<section class="py-20 px-4 bg-darkbg">
 			<div class="max-w-6xl mx-auto">
-				<h2 class="text-3xl md:text-4xl font-bold text-center mb-16 text-white">
+				<h2 class="text-3xl md:text-4xl font-bold text-center mb-16 text-white pacifico">
 					Get Help Now
 				</h2>
 				<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
 					<div
-						class="bg-darkcard p-8 rounded shadow-lg border border-darkborder"
+						class="stat-card p-8 rounded-lg border border-darkborder"
 					>
 						<h3 class="text-xl font-bold mb-4 text-primary">24/7 Helpline</h3>
 						<p class="text-gray-300 mb-2">
@@ -394,7 +419,7 @@
 						<p class="text-white font-bold">1-800-662-HELP (4357)</p>
 					</div>
 					<div
-						class="bg-darkcard p-8 rounded shadow-lg border border-darkborder"
+						class="stat-card p-8 rounded-lg border border-darkborder"
 					>
 						<h3 class="text-xl font-bold mb-4 text-primary">
 							Treatment Locator
@@ -405,7 +430,7 @@
 						<p class="text-white font-bold">findtreatment.gov</p>
 					</div>
 					<div
-						class="bg-darkcard p-8 rounded shadow-lg border border-darkborder"
+						class="stat-card p-8 rounded-lg border border-darkborder"
 					>
 						<h3 class="text-xl font-bold mb-4 text-primary">Support Groups</h3>
 						<p class="text-gray-300 mb-2">
@@ -416,6 +441,7 @@
 				</div>
 			</div>
 		</section>
+
 		<!-- Footer -->
 		<footer class="bg-gray-900 py-12 px-4">
 			<div class="max-w-6xl mx-auto">
@@ -456,6 +482,7 @@
 				</div>
 			</div>
 		</footer>
+
 		<script>
 			const timelineDetails = {
 				"1month": {
@@ -539,6 +566,7 @@
 					],
 				},
 			};
+
 			function showTimelineDetails(period) {
 				const modal = document.getElementById("timelineModal");
 				const title = document.getElementById("timelineModalTitle");
@@ -553,13 +581,15 @@
 				modal.style.display = "flex";
 				document.body.style.overflow = "hidden";
 			}
+
 			function closeTimelineModal() {
 				const modal = document.getElementById("timelineModal");
 				modal.style.display = "none";
 				document.body.style.overflow = "auto";
 			}
+
 			document.addEventListener("DOMContentLoaded", function () {
-				// Add click event listeners to timeline items
+				// Timeline event listeners
 				document
 					.getElementById("timeline-1month")
 					.addEventListener("click", () => showTimelineDetails("1month"));
@@ -575,80 +605,59 @@
 				document
 					.getElementById("timeline-2years")
 					.addEventListener("click", () => showTimelineDetails("2years"));
-				// Character counter for pledge reason
-				const reasonTextarea = document.getElementById("reason");
-				const charCount = document.getElementById("charCount");
-				reasonTextarea.addEventListener("input", function () {
-					charCount.textContent = this.value.length;
-				});
-				// Pledge form submission
-				const pledgeForm = document.getElementById("pledgeForm");
-				const pledgeWall = document.getElementById("pledgeWall");
-				const pledgeCount = document.getElementById("pledgeCount");
-				// Load existing pledges from localStorage or use defaults
-				let pledges = JSON.parse(localStorage.getItem("pledges")) || [];
-				// If no pledges in storage, add default ones
-				if (pledges.length === 0) {
-					pledges = [
-						{
-							initials: "JD",
-							reason:
-								"For my daughter who deserves a father who is present and healthy.",
-						},
-						{
-							initials: "KM",
-							reason:
-								"To break the cycle of addiction in my family and be a positive example for my younger siblings.",
-						},
-						{
-							initials: "RT",
-							reason:
-								"Because I've seen what drugs did to my best friend, and I choose a different path.",
-						},
-					];
-					localStorage.setItem("pledges", JSON.stringify(pledges));
+
+				// Family Image Scroll Control
+				const imageHappy = document.querySelector(".image-happy");
+				const imageBroken = document.querySelector(".image-broken");
+				const familySection =
+					document.querySelector(".image-happy").parentElement;
+				let isAnimationActive = false;
+				let animationCompleted = false;
+
+				function lockScroll() {
+					window.scrollTo(window.scrollX, window.scrollY);
 				}
-				// Display pledges
-				function displayPledges() {
-					pledgeWall.innerHTML = "";
-					pledges.forEach((pledge) => {
-						const pledgeCard = document.createElement("div");
-						pledgeCard.className =
-							"pledge-card bg-darkcard p-6 rounded shadow-lg border border-darkborder";
-						pledgeCard.innerHTML = `
-<p class="text-xl font-bold text-primary mb-2">${pledge.initials}</p>
-<p class="text-gray-300">"${pledge.reason}"</p>
-`;
-						pledgeWall.appendChild(pledgeCard);
-					});
-				}
-				displayPledges();
-				// Handle form submission
-				pledgeForm.addEventListener("submit", function (e) {
-					e.preventDefault();
-					const initials = document
-						.getElementById("initials")
-						.value.toUpperCase();
-					const reason = document.getElementById("reason").value;
-					// Add new pledge
-					pledges.unshift({ initials, reason });
-					// Keep only the most recent 12 pledges
-					if (pledges.length > 12) {
-						pledges = pledges.slice(0, 12);
+
+				function updateImageOpacity() {
+					const rect = familySection.getBoundingClientRect();
+					const windowHeight = window.innerHeight;
+					const sectionTop = rect.top;
+					const sectionHeight = rect.height;
+
+					const scrollPercentage = Math.max(
+						0,
+						Math.min(1, 1 - sectionTop / (windowHeight - sectionHeight / 2))
+					);
+
+					imageHappy.style.opacity = scrollPercentage;
+					imageBroken.style.opacity = 1 - scrollPercentage;
+
+					if (sectionTop <= windowHeight && sectionTop + sectionHeight >= 0) {
+						if (!animationCompleted) {
+							isAnimationActive = true;
+							window.addEventListener("scroll", lockScroll);
+						}
+					} else {
+						isAnimationActive = false;
+						window.removeEventListener("scroll", lockScroll);
 					}
-					// Save to localStorage
-					localStorage.setItem("pledges", JSON.stringify(pledges));
-					// Update display
-					displayPledges();
-					// Increment counter
-					let count = parseInt(pledgeCount.textContent.replace(/,/g, ""));
-					count++;
-					pledgeCount.textContent = count.toLocaleString();
-					// Reset form
-					pledgeForm.reset();
-					charCount.textContent = "0";
-					// Scroll to pledge wall
-					pledgeWall.scrollIntoView({ behavior: "smooth" });
+
+					if (scrollPercentage >= 1 && isAnimationActive) {
+						isAnimationActive = false;
+						animationCompleted = true;
+						window.removeEventListener("scroll", lockScroll);
+					}
+				}
+
+				window.addEventListener("scroll", updateImageOpacity);
+				window.addEventListener("resize", updateImageOpacity);
+				updateImageOpacity();
+
+				window.addEventListener("scroll", () => {
+					const rect = familySection.getBoundingClientRect();
+					if (rect.top > window.innerHeight || rect.bottom < 0) {
+						animationCompleted = false;
+					}
 				});
 			});
 		</script>
