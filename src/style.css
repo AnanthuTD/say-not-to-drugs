@@ -1,0 +1,96 @@
+@import "tailwindcss";
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+.animate-fade-in-delay-1 {
+  animation: fadeIn 0.8s ease-out 0.2s forwards;
+  opacity: 0;
+}
+.animate-fade-in-delay-2 {
+  animation: fadeIn 0.8s ease-out 0.4s forwards;
+  opacity: 0;
+}
+.timeline-container::-webkit-scrollbar {
+  height: 6px;
+}
+.timeline-container::-webkit-scrollbar-track {
+  background: #f3f4f6;
+  border-radius: 8px;
+}
+.timeline-container::-webkit-scrollbar-thumb {
+  background: #DC2626;
+  border-radius: 8px;
+}
+.sticky-note {
+  transition: all 0.3s ease-in-out;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.15);
+  position: relative;
+}
+.sticky-note::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.1);
+  pointer-events: none;
+}
+.sticky-note:hover {
+  transform: scale(1.02) translateY(-5px);
+  box-shadow: 3px 5px 12px rgba(0, 0, 0, 0.25);
+  z-index: 10;
+}
+.stat-card, .pledge-card {
+  transition: transform 0.3s ease;
+}
+.stat-card:hover, .pledge-card:hover {
+  transform: scale(1.05);
+}
+.timeline-item {
+  scroll-snap-align: start;
+}
+
+.smoke {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: smokeRise 1.5s ease-out forwards;
+  z-index: 5;
+}
+
+@keyframes smokeRise {
+  0% {
+    transform: scale(1) translateY(0);
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.2;
+    transform: scale(2) translateY(-20px);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(3) translateY(-50px);
+  }
+}
+
+/* Ensure smoke doesn't obscure text */
+.hero-container {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Disable animation for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .smoke {
+    display: none;
+  }
+}

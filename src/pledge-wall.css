@@ -1,0 +1,159 @@
+@import "tailwindcss";
+
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes bounceIn {
+  0% { transform: scale(0.8); opacity: 0; }
+  60% { transform: scale(1.1); opacity: 1; }
+  100% { transform: scale(1); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+.animate-fade-in-delay-1 {
+  animation: fadeIn 0.8s ease-out 0.2s forwards;
+  opacity: 0;
+}
+
+.animate-fade-in-delay-2 {
+  animation: fadeIn 0.8s ease-out 0.4s forwards;
+  opacity: 0;
+}
+
+.new-pledge {
+  animation: bounceIn 0.5s ease-out;
+}
+
+.wall-background {
+  background-image: url('https://readdy.ai/api/search-image?query=textured%2520brick%2520wall%2520background%2520with%2520varying%2520shades%2520of%2520neutral%2520colors%252C%2520realistic%2520concrete%2520texture%2520with%2520subtle%2520shadows%2520and%2520highlights%252C%2520urban%2520feel%252C%2520no%2520graffiti%252C%2520clean%2520wall%2520surface%252C%2520slightly%2520weathered%2520appearance&width=1920&height=1080&seq=wall123&orientation=landscape');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.sticky-note {
+  transition: all 0.3s ease-in-out;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.15);
+  position: relative;
+}
+
+.sticky-note::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.1);
+  pointer-events: none;
+}
+
+.sticky-note:hover {
+  transform: scale(1.02) translateY(-5px);
+  box-shadow: 3px 5px 12px rgba(0, 0, 0, 0.25);
+  z-index: 10;
+}
+
+.sticky-note p {
+  font-family: 'Poppins', sans-serif;
+  color: #1F2937;
+}
+
+.sticky-note .signature {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 0.85em;
+  text-align: right;
+  font-style: italic;
+  margin-top: 8px;
+  color: #DC2626;
+}
+
+.sticky-note .date {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.7em;
+  opacity: 0.7;
+  color: #1F2937;
+}
+
+.timeline-container::-webkit-scrollbar {
+  height: 6px;
+}
+
+.timeline-container::-webkit-scrollbar-track {
+  background: #f3f4f6;
+  border-radius: 8px;
+}
+
+.timeline-container::-webkit-scrollbar-thumb {
+  background: #DC2626;
+  border-radius: 8px;
+}
+
+.stat-card, .pledge-card {
+  transition: transform 0.3s ease;
+}
+
+.stat-card:hover, .pledge-card:hover {
+  transform: scale(1.05);
+}
+
+.timeline-item {
+  scroll-snap-align: start;
+}
+
+.ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple::after {
+  content: '';
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple 0.6s linear;
+}
+
+@keyframes ripple {
+  to { transform: scale(4); opacity: 0; }
+}
+
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: #f3f4f6;
+  z-index: 50;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: #DC2626;
+  width: 0;
+  transition: width 0.2s ease-out;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.zoomable {
+  transform-origin: 0 0;
+  transition: transform 0.1s ease-out;
+}
