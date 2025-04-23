@@ -7,15 +7,11 @@
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
-			href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+			href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&display=swap"
 			rel="stylesheet"
 		/>
 		<link
-			href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
-			rel="stylesheet"
-		/>
-		<link
-			href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap"
+			href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;700&display=swap"
 			rel="stylesheet"
 		/>
 		<link
@@ -35,6 +31,7 @@
 							darkcard: "#1E293B",
 							darktext: "#E5E7EB",
 							darkborder: "#374151",
+							romantic: "#F3E8E8",
 						},
 						borderRadius: {
 							none: "0px",
@@ -46,21 +43,27 @@
 							"2xl": "24px",
 							"3xl": "32px",
 							full: "9999px",
-							button: "8px",
+							button: "12px",
 						},
 						animation: {
-							'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+							"pulse-slow": "pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+							"gradient-shift": "gradientShift 8s ease infinite",
 						},
 						keyframes: {
 							pulse: {
-								'0%, 100%': {
+								"0%, 100%": {
 									opacity: 1,
-									boxShadow: '0 0 0 0 rgba(220, 38, 38, 0.7)',
+									boxShadow: "0 0 0 0 rgba(220, 38, 38, 0.7)",
 								},
-								'50%': {
+								"50%": {
 									opacity: 0.8,
-									boxShadow: '0 0 0 10px rgba(220, 38, 38, 0)',
+									boxShadow: "0 0 0 10px rgba(220, 38, 38, 0)",
 								},
+							},
+							gradientShift: {
+								"0%": { backgroundPosition: "0% 50%" },
+								"50%": { backgroundPosition: "100% 50%" },
+								"100%": { backgroundPosition: "0% 50%" },
 							},
 						},
 					},
@@ -72,9 +75,14 @@
 				content: "\f3c2";
 			}
 			body {
-				font-family: "Montserrat", sans-serif;
+				font-family: "Lora", serif;
 				background-color: #111827;
 				color: #e5e7eb;
+			}
+			.romantic-heading {
+				font-family: "Playfair Display", serif;
+				letter-spacing: 0.05em;
+				text-shadow: 0 0 8px rgba(220, 38, 38, 0.3);
 			}
 			@keyframes fadeIn {
 				from {
@@ -87,14 +95,14 @@
 				}
 			}
 			.animate-fade-in {
-				animation: fadeIn 0.8s ease-out forwards;
+				animation: fadeIn 1s ease-out forwards;
 			}
 			.animate-fade-in-delay-1 {
-				animation: fadeIn 0.8s ease-out 0.2s forwards;
+				animation: fadeIn 1s ease-out 0.3s forwards;
 				opacity: 0;
 			}
 			.animate-fade-in-delay-2 {
-				animation: fadeIn 0.8s ease-out 0.4s forwards;
+				animation: fadeIn 1s ease-out 0.6s forwards;
 				opacity: 0;
 			}
 			.timeline-container::-webkit-scrollbar {
@@ -110,7 +118,7 @@
 			}
 			.stat-card {
 				transition: transform 0.3s ease, box-shadow 0.3s ease;
-				background: linear-gradient(145deg, #1E293B, #2D3748);
+				background: linear-gradient(145deg, #1e293b, #2d3748);
 			}
 			.stat-card:hover {
 				transform: translateY(-5px);
@@ -119,7 +127,7 @@
 			.timeline-item {
 				scroll-snap-align: start;
 				transition: transform 0.3s ease, box-shadow 0.3s ease;
-				background: linear-gradient(145deg, #1E293B, #2D3748);
+				background: linear-gradient(145deg, #1e293b, #2d3748);
 			}
 			.timeline-item:hover {
 				transform: translateY(-3px);
@@ -127,61 +135,62 @@
 			}
 			.story-card {
 				transition: transform 0.3s ease, box-shadow 0.3s ease;
-				background: linear-gradient(145deg, #1E293B, #2D3748);
+				background: linear-gradient(145deg, #1e293b, #2d3748);
 			}
 			.story-card:hover {
 				transform: translateY(-5px);
 				box-shadow: 0 10px 25px rgba(220, 38, 38, 0.2);
 			}
-			input, textarea {
-				background-color: #1e293b;
-				color: #e5e7eb;
-				border-color: #374151;
-			}
-			input:focus, textarea:focus {
-				outline: none;
-				border-color: #dc2626;
-				box-shadow: 0 0 0 2px rgba(220, 38, 38, 0.5);
-			}
-			.image-broken, .image-happy {
+			.image-broken,
+			.image-happy {
 				transition: opacity 0.3s ease;
 			}
-			.hero-gradient {
-				background: linear-gradient(135deg, #4a154b 0%, #dc2626 100%);
+			.hero-section {
+				background: linear-gradient(135deg, #4a154b 0%, #111827 100%);
+				background-size: 200% 200%;
+				animation: gradient-shift 8s ease infinite;
+				position: relative;
+				overflow: hidden;
 			}
 			.cta-button {
 				transition: transform 0.3s ease, box-shadow 0.3s ease;
 			}
 			.cta-button:hover {
-				transform: translateY(-2px);
+				transform: scale(1.05);
 				box-shadow: 0 5px 15px rgba(220, 38, 38, 0.4);
 			}
-			.pacifico {
-				font-family: "Pacifico", cursive;
+			#smokeCanvas {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				pointer-events: none;
+				z-index: 5;
 			}
 		</style>
 	</head>
 	<body class="bg-darkbg text-darktext">
 		<!-- Hero Section -->
 		<section
-			class="relative w-full h-screen flex items-center justify-center overflow-hidden hero-gradient"
-			style="
-				background-image: url('https://readdy.ai/api/search-image?query=A%20hopeful%20scene%20showing%20young%20people%20enjoying%20life%20in%20a%20park%2C%20with%20bright%20sunlight%20filtering%20through%20trees.%20The%20image%20has%20a%20clean%2C%20bright%20left%20side%20that%20gradually%20transitions%20to%20a%20more%20detailed%20scene%20on%20the%20right.%20Perfect%20for%20text%20overlay%20on%20the%20left%20side.%20High%20quality%2C%20professional%20photography%20style%2C%20inspirational%2C%20uplifting%20mood.&width=1920&height=1080&seq=1&orientation=landscape');
-				background-size: cover;
-				background-position: center;
-			"
+			class="hero-section relative w-full h-screen flex items-center justify-center overflow-hidden"
 		>
-			<div class="absolute inset-0 bg-black bg-opacity-70"></div>
-			<div class="relative z-10 text-center px-4 max-w-4xl animate-fade-in">
-				<h1 class="text-5xl md:text-7xl font-bold text-white mb-4 pacifico">
+			<canvas id="smokeCanvas"></canvas>
+			<div class="absolute inset-0 bg-black bg-opacity-60"></div>
+			<div class="relative z-10 text-center px-4 max-w-4xl">
+				<h1
+					class="text-5xl md:text-7xl font-bold text-romantic mb-4 romantic-heading animate-fade-in"
+				>
 					Say No to Drugs
 				</h1>
-				<p class="text-xl md:text-2xl text-gray-200 mb-8 font-light">
+				<p
+					class="text-xl md:text-2xl text-gray-200 mb-8 font-light animate-fade-in-delay-1"
+				>
 					Choose Life.
 				</p>
 				<a
 					href="/pledge-wall.html"
-					class="bg-primary text-white px-8 py-3 rounded-button font-medium text-lg hover:bg-opacity-90 transition-all cta-button animate-pulse-slow"
+					class="bg-primary text-romantic px-8 py-3 rounded-button font-medium text-lg hover:bg-opacity-90 transition-all cta-button animate-pulse-slow animate-fade-in-delay-2"
 					>Take the Pledge</a
 				>
 			</div>
@@ -190,7 +199,9 @@
 		<!-- Stats Section -->
 		<section class="py-20 px-4 bg-darkbg">
 			<div class="max-w-6xl mx-auto">
-				<h2 class="text-3xl md:text-4xl font-bold text-center mb-16 text-white pacifico">
+				<h2
+					class="text-3xl md:text-4xl font-bold text-center mb-16 text-romantic romantic-heading"
+				>
 					The Reality of Drug Abuse
 				</h2>
 				<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -207,7 +218,8 @@
 					>
 						<p class="text-primary text-5xl font-bold mb-4">73%</p>
 						<p class="text-gray-300">
-							Of teenagers report being pressured to try drugs before graduation
+							Of teenagers report being pressured to try drugs before
+							graduation
 						</p>
 					</div>
 					<div
@@ -215,8 +227,8 @@
 					>
 						<p class="text-primary text-5xl font-bold mb-4">$740B</p>
 						<p class="text-gray-300">
-							Annual economic cost of substance abuse in healthcare, crime, and
-							lost productivity
+							Annual economic cost of substance abuse in healthcare, crime,
+							and lost productivity
 						</p>
 					</div>
 				</div>
@@ -226,7 +238,9 @@
 		<!-- Timeline Section -->
 		<section class="py-20 px-4 bg-gray-900">
 			<div class="max-w-6xl mx-auto">
-				<h2 class="text-3xl md:text-4xl font-bold text-center mb-16 text-white pacifico">
+				<h2
+					class="text-3xl md:text-4xl font-bold text-center mb-16 text-romantic romantic-heading"
+				>
 					The Path of Addiction
 				</h2>
 				<div class="timeline-container overflow-x-auto pb-4">
@@ -235,7 +249,9 @@
 							id="timeline-1month"
 							class="timeline-item p-6 rounded-lg w-[250px] flex-shrink-0 border-2 border-transparent hover:border-primary cursor-pointer"
 						>
-							<h3 class="text-white font-bold text-xl mb-2">1 Month</h3>
+							<h3 class="text-romantic font-bold text-xl mb-2">
+								1 Month
+							</h3>
 							<p class="text-gray-400">
 								Initial dependency forms. Cravings begin to affect daily
 								decisions and priorities.
@@ -245,40 +261,46 @@
 							id="timeline-3months"
 							class="timeline-item p-6 rounded-lg w-[250px] flex-shrink-0 border-2 border-transparent hover:border-primary cursor-pointer"
 						>
-							<h3 class="text-white font-bold text-xl mb-2">3 Months</h3>
+							<h3 class="text-romantic font-bold text-xl mb-2">
+								3 Months
+							</h3>
 							<p class="text-gray-400">
-								Financial strain begins. Money previously used for necessities
-								now diverted to substances.
+								Financial strain begins. Money previously used for
+								necessities now diverted to substances.
 							</p>
 						</div>
 						<div
 							id="timeline-6months"
 							class="timeline-item p-6 rounded-lg w-[250px] flex-shrink-0 border-2 border-transparent hover:border-primary cursor-pointer"
 						>
-							<h3 class="text-white font-bold text-xl mb-2">6 Months</h3>
+							<h3 class="text-romantic font-bold text-xl mb-2">
+								6 Months
+							</h3>
 							<p class="text-gray-400">
-								Relationships become strained. Trust is broken with family and
-								close friends.
+								Relationships become strained. Trust is broken with family
+								and close friends.
 							</p>
 						</div>
 						<div
 							id="timeline-1year"
 							class="timeline-item p-6 rounded-lg w-[250px] flex-shrink-0 border-2 border-transparent hover:border-primary cursor-pointer"
 						>
-							<h3 class="text-white font-bold text-xl mb-2">1 Year</h3>
+							<h3 class="text-romantic font-bold text-xl mb-2">1 Year</h3>
 							<p class="text-gray-400">
-								Significant health decline. Physical and mental health issues
-								become apparent.
+								Significant health decline. Physical and mental health
+								issues become apparent.
 							</p>
 						</div>
 						<div
 							id="timeline-2years"
 							class="timeline-item p-6 rounded-lg w-[250px] flex-shrink-0 border-2 border-transparent hover:border-primary cursor-pointer"
 						>
-							<h3 class="text-white font-bold text-xl mb-2">2+ Years</h3>
+							<h3 class="text-romantic font-bold text-xl mb-2">
+								2+ Years
+							</h3>
 							<p class="text-gray-400">
-								Complete life disruption. Career, housing, and long-term health
-								severely compromised.
+								Complete life disruption. Career, housing, and long-term
+								health severely compromised.
 							</p>
 						</div>
 					</div>
@@ -294,15 +316,18 @@
 				>
 					<button
 						onclick="closeTimelineModal()"
-						class="absolute top-4 right-4 text-gray-400 hover:text-white"
+						class="absolute top-4 right-4 text-gray-400 hover:text-romantic"
 					>
 						<i class="ri-close-line ri-2x"></i>
 					</button>
 					<h3
 						id="timelineModalTitle"
-						class="text-2xl font-bold mb-4 text-white"
+						class="text-2xl font-bold mb-4 text-romantic romantic-heading"
 					></h3>
-					<div id="timelineModalContent" class="space-y-4 text-gray-300"></div>
+					<div
+						id="timelineModalContent"
+						class="space-y-4 text-gray-300"
+					></div>
 					<div class="mt-6 pt-4 border-t border-darkborder">
 						<h4 class="font-bold text-primary mb-2">Warning Signs:</h4>
 						<ul
@@ -313,7 +338,7 @@
 					<div class="mt-6">
 						<button
 							onclick="closeTimelineModal()"
-							class="bg-primary text-white px-6 py-2 rounded-button hover:bg-opacity-90 transition-all cta-button"
+							class="bg-primary text-romantic px-6 py-2 rounded-button hover:bg-opacity-90 transition-all cta-button"
 						>
 							Close
 						</button>
@@ -325,31 +350,35 @@
 		<!-- Stories Section -->
 		<section class="py-20 px-4 bg-darkbg">
 			<div class="max-w-6xl mx-auto">
-				<h2 class="text-3xl md:text-4xl font-bold text-center mb-16 text-white pacifico">
+				<h2
+					class="text-3xl md:text-4xl font-bold text-center mb-16 text-romantic romantic-heading"
+				>
 					Recovery Stories
 				</h2>
 				<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 					<div
 						class="story-card p-8 rounded-lg border border-darkborder"
 					>
-						<h3 class="text-2xl font-bold mb-4 text-white">
+						<h3 class="text-2xl font-bold mb-4 text-romantic">
 							Emily: 5 Years Sober
 						</h3>
 						<p class="text-gray-300 mb-6">
 							"I started using in college to cope with stress. What began as
-							weekend fun quickly spiraled into daily dependency. After hitting
-							rock bottom and losing my scholarship, I found the strength to
-							seek help. Today, I'm a counselor helping others find their way
-							back."
+							weekend fun quickly spiraled into daily dependency. After
+							hitting rock bottom and losing my scholarship, I found the
+							strength to seek help. Today, I'm a counselor helping others
+							find their way back."
 						</p>
-						<a href="#" class="text-primary font-medium hover:underline"
+						<a
+							href="#"
+							class="text-primary font-medium hover:underline"
 							>Read More</a
 						>
 					</div>
 					<div
 						class="story-card p-8 rounded-lg border border-darkborder"
 					>
-						<h3 class="text-2xl font-bold mb-4 text-white">
+						<h3 class="text-2xl font-bold mb-4 text-romantic">
 							Michael: Rebuilt His Family
 						</h3>
 						<p class="text-gray-300 mb-6">
@@ -359,7 +388,9 @@
 							regained partial custody, and now help run a support group for
 							parents in recovery."
 						</p>
-						<a href="#" class="text-primary font-medium hover:underline"
+						<a
+							href="#"
+							class="text-primary font-medium hover:underline"
 							>Read More</a
 						>
 					</div>
@@ -371,7 +402,9 @@
 		<section class="py-16 md:py-24 bg-gray-900">
 			<div class="container mx-auto px-6">
 				<div class="text-center mb-16">
-					<h2 class="text-3xl md:text-4xl font-bold mb-4 text-white pacifico">
+					<h2
+						class="text-3xl md:text-4xl font-bold mb-4 text-romantic romantic-heading"
+					>
 						The Impact on Families
 					</h2>
 					<p class="text-lg text-gray-300 max-w-3xl mx-auto">
@@ -380,7 +413,9 @@
 					</p>
 				</div>
 				<div class="max-w-6xl mx-auto relative">
-					<div class="relative h-[600px] w-full rounded-lg overflow-hidden border border-darkborder shadow-lg">
+					<div
+						class="relative h-[600px] w-full rounded-lg overflow-hidden border border-darkborder shadow-lg"
+					>
 						<div
 							class="absolute inset-0 image-broken"
 							style="
@@ -405,18 +440,22 @@
 		<!-- Resources Section -->
 		<section class="py-20 px-4 bg-darkbg">
 			<div class="max-w-6xl mx-auto">
-				<h2 class="text-3xl md:text-4xl font-bold text-center mb-16 text-white pacifico">
+				<h2
+					class="text-3xl md:text-4xl font-bold text-center mb-16 text-romantic romantic-heading"
+				>
 					Get Help Now
 				</h2>
 				<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
 					<div
 						class="stat-card p-8 rounded-lg border border-darkborder"
 					>
-						<h3 class="text-xl font-bold mb-4 text-primary">24/7 Helpline</h3>
+						<h3 class="text-xl font-bold mb-4 text-primary">
+							24/7 Helpline
+						</h3>
 						<p class="text-gray-300 mb-2">
 							Immediate support when you need it most.
 						</p>
-						<p class="text-white font-bold">1-800-662-HELP (4357)</p>
+						<p class="text-romantic font-bold">1-800-662-HELP (4357)</p>
 					</div>
 					<div
 						class="stat-card p-8 rounded-lg border border-darkborder"
@@ -427,16 +466,18 @@
 						<p class="text-gray-300 mb-2">
 							Find local treatment facilities and programs.
 						</p>
-						<p class="text-white font-bold">findtreatment.gov</p>
+						<p class="text-romantic font-bold">findtreatment.gov</p>
 					</div>
 					<div
 						class="stat-card p-8 rounded-lg border border-darkborder"
 					>
-						<h3 class="text-xl font-bold mb-4 text-primary">Support Groups</h3>
+						<h3 class="text-xl font-bold mb-4 text-primary">
+							Support Groups
+						</h3>
 						<p class="text-gray-300 mb-2">
 							Connect with others on the recovery journey.
 						</p>
-						<p class="text-white font-bold">na.org / aa.org</p>
+						<p class="text-romantic font-bold">na.org / aa.org</p>
 					</div>
 				</div>
 			</div>
@@ -445,7 +486,9 @@
 		<!-- Footer -->
 		<footer class="bg-gray-900 py-12 px-4">
 			<div class="max-w-6xl mx-auto">
-				<div class="flex flex-col md:flex-row justify-between items-center">
+				<div
+					class="flex flex-col md:flex-row justify-between items-center"
+				>
 					<div class="mb-6 md:mb-0">
 						<p class="text-gray-400">
 							Contact:
@@ -592,19 +635,29 @@
 				// Timeline event listeners
 				document
 					.getElementById("timeline-1month")
-					.addEventListener("click", () => showTimelineDetails("1month"));
+					.addEventListener("click", () =>
+						showTimelineDetails("1month")
+					);
 				document
 					.getElementById("timeline-3months")
-					.addEventListener("click", () => showTimelineDetails("3months"));
+					.addEventListener("click", () =>
+						showTimelineDetails("3months")
+					);
 				document
 					.getElementById("timeline-6months")
-					.addEventListener("click", () => showTimelineDetails("6months"));
+					.addEventListener("click", () =>
+						showTimelineDetails("6months")
+					);
 				document
 					.getElementById("timeline-1year")
-					.addEventListener("click", () => showTimelineDetails("1year"));
+					.addEventListener("click", () =>
+						showTimelineDetails("1year")
+					);
 				document
 					.getElementById("timeline-2years")
-					.addEventListener("click", () => showTimelineDetails("2years"));
+					.addEventListener("click", () =>
+						showTimelineDetails("2years")
+					);
 
 				// Family Image Scroll Control
 				const imageHappy = document.querySelector(".image-happy");
@@ -626,13 +679,19 @@
 
 					const scrollPercentage = Math.max(
 						0,
-						Math.min(1, 1 - sectionTop / (windowHeight - sectionHeight / 2))
+						Math.min(
+							1,
+							1 - sectionTop / (windowHeight - sectionHeight / 2)
+						)
 					);
 
 					imageHappy.style.opacity = scrollPercentage;
 					imageBroken.style.opacity = 1 - scrollPercentage;
 
-					if (sectionTop <= windowHeight && sectionTop + sectionHeight >= 0) {
+					if (
+						sectionTop <= windowHeight &&
+						sectionTop + sectionHeight >= 0
+					) {
 						if (!animationCompleted) {
 							isAnimationActive = true;
 							window.addEventListener("scroll", lockScroll);
@@ -658,6 +717,71 @@
 					if (rect.top > window.innerHeight || rect.bottom < 0) {
 						animationCompleted = false;
 					}
+				});
+
+				// Smoke Effect for Hero Section
+				const canvas = document.getElementById("smokeCanvas");
+				const ctx = canvas.getContext("2d");
+				canvas.width = window.innerWidth;
+				canvas.height = window.innerHeight;
+
+				const particles = [];
+				const maxParticles = 50;
+
+				class Particle {
+					constructor(x, y) {
+						this.x = x;
+						this.y = y;
+						this.size = Math.random() * 10 + 5;
+						this.speedX = Math.random() * 0.2 - 0.1;
+						this.speedY = Math.random() * -0.3 - 0.1;
+						this.opacity = 0.5;
+						this.life = 100;
+					}
+
+					update() {
+						this.x += this.speedX;
+						this.y += this.speedY;
+						this.size *= 0.98;
+						this.opacity -= 0.01;
+						this.life--;
+					}
+
+					draw() {
+						ctx.beginPath();
+						ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+						ctx.fillStyle = `rgba(220, 38, 38, ${this.opacity})`;
+						ctx.fill();
+					}
+				}
+
+				function createSmoke(e) {
+					if (particles.length < maxParticles) {
+						particles.push(new Particle(e.clientX, e.clientY));
+					}
+				}
+
+				function animateSmoke() {
+					ctx.clearRect(0, 0, canvas.width, canvas.height);
+					for (let i = particles.length - 1; i >= 0; i--) {
+						const particle = particles[i];
+						particle.update();
+						particle.draw();
+						if (particle.life <= 0 || particle.opacity <= 0) {
+							particles.splice(i, 1);
+						}
+					}
+					requestAnimationFrame(animateSmoke);
+				}
+
+				const heroSection = document.querySelector(".hero-section");
+				heroSection.addEventListener("mousemove", createSmoke);
+				animateSmoke();
+
+				// Resize canvas on window resize
+				window.addEventListener("resize", () => {
+					canvas.width = window.innerWidth;
+					canvas.height = window.innerHeight;
 				});
 			});
 		</script>
