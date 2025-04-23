@@ -325,15 +325,25 @@ function throttle(fn, wait) {
   };
 }
 
-// Smoke animation
+// Smoke animation with randomized properties
 function createSmoke(e) {
   const hero = document.querySelector('.hero-container');
   const smoke = document.createElement('div');
   smoke.className = 'smoke';
-  smoke.style.left = `${e.clientX - 10}px`; // Center smoke on cursor
-  smoke.style.top = `${e.clientY - 10}px`;
+  
+  // Randomize properties
+  const size = Math.random() * 20 + 20; // 20px to 40px
+  const driftX = (Math.random() - 0.5) * 40; // -20px to 20px
+  const rotate = (Math.random() - 0.5) * 90; // -45deg to 45deg
+  
+  smoke.style.setProperty('--smoke-size', `${size}px`);
+  smoke.style.setProperty('--drift-x', `${driftX}px`);
+  smoke.style.setProperty('--rotate', `${rotate}deg`);
+  
+  smoke.style.left = `${e.clientX - size / 2}px`; // Center smoke on cursor
+  smoke.style.top = `${e.clientY - size / 2}px`;
   hero.appendChild(smoke);
-  setTimeout(() => smoke.remove(), 1500); // Remove after animation
+  setTimeout(() => smoke.remove(), 2000); // Remove after animation
 }
 
 document.addEventListener('DOMContentLoaded', () => {
