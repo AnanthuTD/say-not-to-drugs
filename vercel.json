@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/pledge-wall.html",
+      "destination": "/pledge-wall.html",
+      "permanent": true
+    }
+  ]
+}
